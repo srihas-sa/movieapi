@@ -25,7 +25,7 @@ const initializeDBAndServer = async () => {
 };
 
 initializeDBAndServer();
-/*
+
 app.get("/movies/", async (request, response) => {
   const { bookId } = request.params;
   const getMovieQuery = `
@@ -38,20 +38,19 @@ app.get("/movies/", async (request, response) => {
   const movie = await db.get(getMovieQuery);
   response.send(movie);
 });
-*/
 
 app.post("/movies/", async (request, response) => {
   const movieDetails = request.body;
-  const { director_id, movie_name, lead_actor } = movieDetails;
+  const { directorId, movieName, leadActor } = movieDetails;
   const addmovieQuery = `
     INSERT INTO
-      book (director_id, movie_name,lead_actor)
+      movie (directorId, movieName,leadActor)
     VALUES
       (
 
-         ${director_id},
-        '${movie_name}',
-        '${lead_actor}',
+         ${directorId},
+        '${movieName}',
+        '${leadActor}',
       );`;
 
   const dbResponse = await db.run(addmovieQuery);
